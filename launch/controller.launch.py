@@ -31,8 +31,8 @@ def generate_launch_description():
 
     node = Node(
         package=package_name,
-        name='controller',
-        executable='controller',
+        name=package_name,
+        executable=package_name,
         parameters=[config]
     )
 

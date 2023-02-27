@@ -1,6 +1,9 @@
 # mbari_wec_template_cpp
 C++ template repo for external ROS2-enabled controller for MBARI's wave energy conversion buoy (sim or physical).
 
+Please also refer to Github's
+[template documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
+
 Please see [buoy_msgs/buoy_api_cpp](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp)
 for controller [examples](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp/examples)
 
