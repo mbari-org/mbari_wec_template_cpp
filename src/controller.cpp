@@ -25,9 +25,11 @@ Controller::Controller(const std::string & node_name)
 {
   this->set_params();
 
-  // set any pack rates here
-  // this->set_sc_pack_rate_param();
-  // this->set_pc_pack_rate_param();
+  // set packet rates from controllers here
+  // controller defaults to publishing @ 10Hz
+  // call these to set rate to 50Hz or provide argument for specific rate
+  // this->set_sc_pack_rate_param();  // set SC publish rate to 50Hz
+  // this->set_pc_pack_rate_param();  // set PC publish rate to 50Hz
 }
 
 // To subscribe to any topic, simply declare & define the specific callback, e.g. power_callback
