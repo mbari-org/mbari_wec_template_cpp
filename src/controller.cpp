@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <mbari_wec_template_cpp/control_policy.hpp>
-#include <mbari_wec_template_cpp/controller.hpp>
-
 #include <memory>
 #include <string>
+
+#include <mbari_wec_template_cpp/control_policy.hpp>
+#include <mbari_wec_template_cpp/controller.hpp>
 
 
 Controller::Controller(const std::string & node_name)

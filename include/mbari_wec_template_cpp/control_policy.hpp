@@ -26,11 +26,11 @@ struct ControlPolicy
 {
   // declare/init any parameter variables here
   double foo{1.0};
-  double bar{10.0*foo};
+  double bar{10.0 * foo};
 
   ControlPolicy()
   : foo{1.0},
-    bar{10.0*foo}
+    bar{10.0 * foo}
   {
     update_params();
   }
@@ -38,7 +38,7 @@ struct ControlPolicy
   // Update dependent variables after reading in params
   void update_params()
   {
-    bar = 10.0*foo;
+    bar = 10.0 * foo;
   }
 
   // Modify function inputs as desired
@@ -48,9 +48,9 @@ struct ControlPolicy
     const double & /*feedback*/,
     const double & /*values*/)
   {
-
+    /*
     // secret sauce
-
+    */
     return 0.0;  // obviously, modify to return proper target value
   }
 };
