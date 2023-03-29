@@ -19,7 +19,7 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 
 
-package_name = 'mbari_wec_template_cpp'
+package_name = 'mbari_wec_linear_damper_cpp'
 
 
 def generate_launch_description():

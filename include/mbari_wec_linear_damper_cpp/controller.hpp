@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef MBARI_WEC_TEMPLATE_CPP__CONTROLLER_HPP_
-#define MBARI_WEC_TEMPLATE_CPP__CONTROLLER_HPP_
+#ifndef MBARI_WEC_LINEAR_DAMPER_CPP__CONTROLLER_HPP_
+#define MBARI_WEC_LINEAR_DAMPER_CPP__CONTROLLER_HPP_
 
 #include <memory>
 #include <string>
@@ -54,21 +54,10 @@ private:
   // this->send_pc_scale_command(scale_factor);
   // this->send_pc_retract_command(retract_factor);
 
-  // Delete any unused callback
-  // Callback for '/ahrs_data' topic from XBowAHRS
-  void ahrs_callback(const buoy_interfaces::msg::XBRecord & data);
-  // Callback for '/battery_data' topic from Battery Controller
-  void battery_callback(const buoy_interfaces::msg::BCRecord & data);
-  // Callback for '/spring_data' topic from Spring Controller
-  void spring_callback(const buoy_interfaces::msg::SCRecord & data);
   // Callback for '/power_data' topic from Power Controller
   void power_callback(const buoy_interfaces::msg::PCRecord & data);
-  // Callback for '/trefoil_data' topic from Trefoil Controller
-  void trefoil_callback(const buoy_interfaces::msg::TFRecord & data);
-  // Callback for '/powerbuoy_data' topic -- Aggregated data from all topics
-  void powerbuoy_callback(const buoy_interfaces::msg::PBRecord & data);
 
   std::unique_ptr<ControlPolicy> policy_;
 };
 
-#endif  // MBARI_WEC_TEMPLATE_CPP__CONTROLLER_HPP_
+#endif  // MBARI_WEC_LINEAR_DAMPER_CPP__CONTROLLER_HPP_

@@ -15,8 +15,8 @@
 #include <memory>
 #include <string>
 
-#include <mbari_wec_template_cpp/control_policy.hpp>
-#include <mbari_wec_template_cpp/controller.hpp>
+#include <mbari_wec_linear_damper_cpp/control_policy.hpp>
+#include <mbari_wec_linear_damper_cpp/controller.hpp>
 
 
 Controller::Controller(const std::string & node_name)
@@ -29,7 +29,7 @@ Controller::Controller(const std::string & node_name)
   // controller defaults to publishing @ 10Hz
   // call these to set rate to 50Hz or provide argument for specific rate
   // this->set_sc_pack_rate_param();  // set SC publish rate to 50Hz
-  // this->set_pc_pack_rate_param();  // set PC publish rate to 50Hz
+  this->set_pc_pack_rate_param();  // set PC publish rate to 50Hz
 }
 
 // To subscribe to any topic, simply declare & define the specific callback, e.g. power_callback
@@ -51,47 +51,20 @@ Controller::Controller(const std::string & node_name)
 // this->send_pc_scale_command(scale_factor);
 // this->send_pc_retract_command(retract_factor);
 
-// Delete any unused callback
-// Callback for '/ahrs_data' topic from XBowAHRS
-void Controller::ahrs_callback(const buoy_interfaces::msg::XBRecord & /*data*/)
-{
-  // Update class variables, get control policy target, send commands, etc.
-  // double target_value = policy_->target(data);
-}
-
-// Callback for '/battery_data' topic from Battery Controller
-void Controller::battery_callback(const buoy_interfaces::msg::BCRecord & /*data*/)
-{
-  // Update class variables, get control policy target, send commands, etc.
-  // double target_value = policy_->target(data);
-}
-
-// Callback for '/spring_data' topic from Spring Controller
-void Controller::spring_callback(const buoy_interfaces::msg::SCRecord & /*data*/)
-{
-  // Update class variables, get control policy target, send commands, etc.
-  // double target_value = policy_->target(data);
-}
-
 // Callback for '/power_data' topic from Power Controller
-void Controller::power_callback(const buoy_interfaces::msg::PCRecord & /*data*/)
+void Controller::power_callback(const buoy_interfaces::msg::PCRecord & data)
 {
   // Update class variables, get control policy target, send commands, etc.
-  // double target_value = policy_->target(data);
-}
+  // get target value from control policy
+  double wind_curr = this->policy_->target(data.rpm, data.scale, data.retract);
 
-// Callback for '/trefoil_data' topic from Trefoil Controller
-void Controller::trefoil_callback(const buoy_interfaces::msg::TFRecord & /*data*/)
-{
-  // Update class variables, get control policy target, send commands, etc.
-  // double target_value = policy_->target(data);
-}
+  RCLCPP_INFO_STREAM(
+    rclcpp::get_logger(
+      this->get_name()),
+    "WindingCurrent: f(" << data.rpm << ", " << data.scale << ", " << data.retract << ") = " <<
+      wind_curr);
 
-// Callback for '/powerbuoy_data' topic -- Aggregated data from all topics
-void Controller::powerbuoy_callback(const buoy_interfaces::msg::PBRecord & /*data*/)
-{
-  // Update class variables, get control policy target, send commands, etc.
-  // double target_value = policy_->target(data);
+  auto future = this->send_pc_wind_curr_command(wind_curr);
 }
 
 
@@ -99,7 +72,7 @@ int main(int argc, char ** argv)
 {
   rclcpp::init(argc, argv);
 
-  rclcpp::spin(std::make_shared<Controller>("controller"));
+  rclcpp::spin(std::make_shared<Controller>("linear_damper"));
   rclcpp::shutdown();
 
   return 0;

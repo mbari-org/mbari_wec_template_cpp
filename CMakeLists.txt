@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(mbari_wec_template_cpp)
+project(mbari_wec_linear_damper_cpp)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -10,10 +10,11 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(buoy_interfaces REQUIRED)
 find_package(buoy_api_cpp REQUIRED COMPONENTS buoy_api)
+find_package(simple_interp REQUIRED)
 
 add_executable(${PROJECT_NAME} src/controller.cpp)
 target_link_libraries(${PROJECT_NAME} PUBLIC buoy_api_cpp::buoy_api)
-ament_target_dependencies(${PROJECT_NAME} PUBLIC rclcpp buoy_interfaces)
+ament_target_dependencies(${PROJECT_NAME} PUBLIC rclcpp buoy_interfaces simple_interp)
 target_include_directories(${PROJECT_NAME} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
