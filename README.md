@@ -4,8 +4,8 @@ C++ template repo for external ROS2-enabled controller for MBARI's wave energy c
 Please also refer to Github's
 [template documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
 
-Please see [buoy_msgs/buoy_api_cpp](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp)
-for controller [examples](https://github.com/osrf/buoy_msgs/tree/main/buoy_api_cpp/examples)
+Please see [mbari_wec_msgs/buoy_api_cpp](https://github.com/osrf/mbari_wec_msgs/tree/main/buoy_api_cpp)
+for controller [examples](https://github.com/osrf/mbari_wec_msgs/tree/main/buoy_api_cpp/examples)
 
 ## Modify template for your package
 Replace `mbari_wec_template_cpp` with your package name in
