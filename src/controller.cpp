@@ -30,6 +30,10 @@ Controller::Controller(const std::string & node_name)
   // call these to set rate to 50Hz or provide argument for specific rate
   // this->set_sc_pack_rate_param();  // set SC publish rate to 50Hz
   // this->set_pc_pack_rate_param();  // set PC publish rate to 50Hz
+
+  // Use this to set node clock to use sim time from /clock (from gazebo sim time)
+  // Access node clock via this->get_clock() or other various time-related functions of rclcpp::Node
+  // this->use_sim_time();
 }
 
 // To subscribe to any topic, simply declare & define the specific callback, e.g. power_callback
